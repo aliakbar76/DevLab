@@ -1,0 +1,13 @@
+{
+  "extends": "@devlab/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "declarationMap": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "composite": false
+  },
+  "include": ["src/**/*.ts"]
+}

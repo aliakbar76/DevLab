@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: devlab-postgres
+    restart: unless-stopped
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: devlab
+      POSTGRES_PASSWORD: devlab
+      POSTGRES_DB: devlab
+    volumes:
+      - devlab_postgres_data:/var/lib/postgresql/data
+      - ./init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U devlab -d devlab']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  devlab_postgres_data:

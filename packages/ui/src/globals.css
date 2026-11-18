@@ -1,0 +1,122 @@
+:root {
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --background: 210 28% 97%;
+  --foreground: 215 32% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 32% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 32% 12%;
+  --primary: 191 78% 32%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 24% 93%;
+  --secondary-foreground: 215 28% 20%;
+  --muted: 210 20% 94%;
+  --muted-foreground: 215 12% 42%;
+  --accent: 191 55% 92%;
+  --accent-foreground: 191 78% 24%;
+  --destructive: 0 72% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 20% 86%;
+  --input: 214 20% 86%;
+  --ring: 191 78% 32%;
+  --radius: 0.75rem;
+  --surface-glow: 191 70% 45%;
+}
+
+.dark {
+  --background: 222 28% 7%;
+  --foreground: 210 30% 96%;
+  --card: 222 24% 10%;
+  --card-foreground: 210 30% 96%;
+  --popover: 222 24% 10%;
+  --popover-foreground: 210 30% 96%;
+  --primary: 187 72% 48%;
+  --primary-foreground: 222 40% 8%;
+  --secondary: 220 18% 16%;
+  --secondary-foreground: 210 24% 92%;
+  --muted: 220 16% 14%;
+  --muted-foreground: 215 12% 64%;
+  --accent: 191 30% 16%;
+  --accent-foreground: 187 72% 70%;
+  --destructive: 0 68% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 16% 18%;
+  --input: 220 16% 18%;
+  --ring: 187 72% 48%;
+  --surface-glow: 187 72% 40%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 500px at 10% -10%, hsl(var(--surface-glow) / 0.12), transparent 55%),
+    radial-gradient(900px 420px at 90% 0%, hsl(215 40% 50% / 0.08), transparent 50%),
+    linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-rise {
+  animation: rise-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade {
+  animation: fade-in 320ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-fade {
+    animation: none;
+  }
+}
